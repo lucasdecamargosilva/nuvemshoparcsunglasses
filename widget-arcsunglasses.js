@@ -1040,13 +1040,20 @@
         document.getElementById('q-btn-gallery').onclick = function() { galleryInput.click(); };
         document.getElementById('q-face-frame').onclick = function() { galleryInput.click(); };
 
-        function loadRelatedProducts() {
+        function loadRelatedProducts(_attempt) {
+            _attempt = _attempt || 0;
             var grid = document.getElementById('q-related-grid');
             var section = document.getElementById('q-related-products');
             if (!grid || !section) return;
 
             var items = document.querySelectorAll('.js-swiper-related .js-item-product');
+            if (!items.length) items = document.querySelectorAll('.js-related-products .js-item-product');
+            if (!items.length) items = document.querySelectorAll('.js-swiper-complementary .js-item-product');
             if (!items.length) items = document.querySelectorAll('.js-item-product');
+            if (!items.length && _attempt < 6) {
+                setTimeout(function() { loadRelatedProducts(_attempt + 1); }, 500);
+                return;
+            }
             var products = [];
 
             items.forEach(function(item) {
@@ -1072,7 +1079,12 @@
                 } catch(e) {}
             });
 
-            if (!products.length) return;
+            if (!products.length) {
+                if (_attempt < 6) {
+                    setTimeout(function() { loadRelatedProducts(_attempt + 1); }, 500);
+                }
+                return;
+            }
 
             while (grid.firstChild) grid.removeChild(grid.firstChild);
             products.forEach(function(p) {
