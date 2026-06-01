@@ -170,7 +170,7 @@
         /* ── Trigger (selo sobre foto) ── */
         @keyframes q-shake { 0%,50%,100%{transform:rotate(0deg)} 10%,30%{transform:rotate(-10deg)} 20%,40%{transform:rotate(10deg)} }
         .q-btn-trigger-ia {
-            position: absolute; top: 14px; right: 14px; z-index: 100;
+            position: absolute; top: 40px; right: 14px; z-index: 100;
             background: none; border: none; padding: 0; cursor: pointer;
             width: 70px; height: 70px;
             display: flex; align-items: center; justify-content: center;
@@ -187,7 +187,7 @@
             display: flex; align-items: center; justify-content: center; gap: 7px;
             width: 100%; padding: 13px 16px;
             background: transparent; color: var(--c-ink);
-            border: 1.5px solid var(--c-ink); border-radius: 0;
+            border: 1.5px solid var(--c-ink); border-radius: 10px;
             font-family: 'Work Sans', var(--font-body), sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
             cursor: pointer; transition: background 0.25s, color 0.25s;
             margin-bottom: 10px; box-sizing: border-box;
@@ -632,7 +632,7 @@
                     <!-- Persistent header (all steps) -->
                     <div id="q-header-provador">
                         <h1>Provador Virtual</h1>
-                        <img src="https://acdn-us.mitiendanube.com/stores/005/717/247/themes/common/logo-6748741135254229882-1779463300-86ee3b9019813e1f66677f534c6788321779463301-480-0.webp" alt="ARC SUNGLASSES" style="height:48px;width:auto;filter:brightness(0);"/>
+                        <img src="https://acdn-us.mitiendanube.com/stores/005/717/247/themes/common/logo-6748741135254229882-1779463300-86ee3b9019813e1f66677f534c6788321779463301-480-0.webp" alt="ARC SUNGLASSES" style="height:48px;width:auto;"/>
                     </div>
 
                     <!-- Main step -->
