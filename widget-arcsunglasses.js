@@ -940,12 +940,18 @@
             if (typeof idata === 'string') idata = JSON.parse(idata);
             var plans = idata[Object.keys(idata)[0]];
             if (!plans) return '';
-            var best = null;
+            // Prioriza a MAIOR parcela SEM JUROS (without_interests), igual a pagina.
+            // So cai numa parcela com juros se nao existir nenhuma sem juros >= 2x.
+            var bestFree = null, bestAny = null;
             Object.keys(plans).forEach(function (k) {
                 var n = parseInt(k, 10);
                 var p = plans[k];
-                if (n >= 2 && p.installment_value > 0 && (!best || n > best.n)) best = { n: n, val: p.installment_value };
+                if (n >= 2 && p.installment_value > 0) {
+                    if (!bestAny || n > bestAny.n) bestAny = { n: n, val: p.installment_value };
+                    if (p.without_interests === true && (!bestFree || n > bestFree.n)) bestFree = { n: n, val: p.installment_value };
+                }
             });
+            var best = bestFree || bestAny;
             if (best) return best.n + 'x de R$ ' + Number(best.val).toFixed(2).replace('.', ',');
         } catch (e) {}
         return '';
